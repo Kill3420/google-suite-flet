@@ -179,7 +179,7 @@ async def main(page: ft.Page):
     )
 
     # ==========================================
-    # MOTOR DEL RELOJ (Ajustado para entorno Web)
+    # MOTOR DEL RELOJ (Compatibilidad Universal)
     # ==========================================
     async def clock_and_chrono_engine():
         while True:
@@ -212,8 +212,8 @@ async def main(page: ft.Page):
     # Construcción asíncrona limpia
     await page.add_async(view_clock, view_gallery, view_files)
     
-    # Arrancar hilos asíncronos en web
-    page.run_task(clock_and_chrono_engine)
+    # Iniciamos la tarea en segundo plano de manera nativa con asyncio
+    asyncio.create_task(clock_and_chrono_engine())
 
 # ==========================================
 # CONFIGURACIÓN DE MONTAJE FASTAPI
