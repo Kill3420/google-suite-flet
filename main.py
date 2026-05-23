@@ -353,4 +353,8 @@ async def main(page: ft.Page):
     page.run_task(clock_and_chrono_engine)
 
 
-app = ft.app(target=main, export_asgi=True)
+# ==========================================
+# IMPORTACIÓN Y CONFIGURACIÓN PARA VERCEL
+# ==========================================
+import flet_fastapi
+app = flet_fastapi.app(main)
