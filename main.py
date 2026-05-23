@@ -2,6 +2,8 @@ import flet as ft
 import datetime
 import asyncio
 
+# Solución al error de atributos de color entre versiones de Flet
+ft.Colors = ft.colors
 
 async def main(page: ft.Page):
     page.title = "Google Suite Mobile"
@@ -37,8 +39,8 @@ async def main(page: ft.Page):
         "h": 0
     }
 
-    # Botones modernos
-    btn_chrono_start = ft.Button(
+    # Se corrige ft.Button por ft.ElevatedButton (estándar de Flet)
+    btn_chrono_start = ft.ElevatedButton(
         content=ft.Text("Iniciar"),
         bgcolor=ft.Colors.BLUE,
         color=ft.Colors.WHITE
@@ -97,7 +99,7 @@ async def main(page: ft.Page):
                     ],
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER
                 ),
-                margin=ft.Margin(0, 30, 0, 40)
+                margin=ft.margin.only(top=30, bottom=40)
             ),
 
             ft.Divider(),
@@ -302,10 +304,7 @@ async def main(page: ft.Page):
                 now = datetime.datetime.now()
 
                 lbl_clock_time.value = now.strftime("%H:%M:%S")
-
-                lbl_clock_date.value = now.strftime(
-                    "%A, %d de %B"
-                )
+                lbl_clock_date.value = now.strftime("%A, %d de %B")
 
                 if chrono_state["running"]:
                     chrono_state["s"] += 1
@@ -325,11 +324,10 @@ async def main(page: ft.Page):
                     )
 
                 page.update()
-
                 await asyncio.sleep(1)
 
             except Exception as ex:
-                print("Error:", ex)
+                print("Error en el motor:", ex)
                 break
 
     # ==========================================
@@ -348,14 +346,13 @@ async def main(page: ft.Page):
     )
 
     # ==========================================
-    # INICIAR TAREA
+    # INICIAR TAREA ASÍNCRONA
     # ==========================================
     page.run_task(clock_and_chrono_engine)
 
 
 # ==========================================
-# IMPORTACIÓN Y CONFIGURACIÓN PARA VERCEL
+# IMPORTACIÓN Y CONFIGURACIÓN PARA RENDER
 # ==========================================
-
 import flet_fastapi
 app = flet_fastapi.app(main, web_path="/")
