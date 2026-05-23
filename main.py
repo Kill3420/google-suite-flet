@@ -1,8 +1,9 @@
 import flet as ft
+from flet import colors as Colors  # Parche directo para todas tus llamadas ft.Colors
 import datetime
 import asyncio
 
-# Solución al error de atributos de color entre versiones de Flet
+# Forzamos compatibilidad en el objeto global de Flet
 ft.Colors = ft.colors
 
 async def main(page: ft.Page):
@@ -39,7 +40,7 @@ async def main(page: ft.Page):
         "h": 0
     }
 
-    # Se corrige ft.Button por ft.ElevatedButton (estándar de Flet)
+    # Se usa ft.ElevatedButton para garantizar compatibilidad total
     btn_chrono_start = ft.ElevatedButton(
         content=ft.Text("Iniciar"),
         bgcolor=ft.Colors.BLUE,
@@ -352,7 +353,7 @@ async def main(page: ft.Page):
 
 
 # ==========================================
-# IMPORTACIÓN Y CONFIGURACIÓN PARA RENDER
+# IMPORTACIÓN Y CONFIGURACIÓN ESTÁNDAR PARA DEPLOY
 # ==========================================
 import flet_fastapi
-app = flet_fastapi.app(main, web_path="/")
+app = flet_fastapi.FletFastAPI(main)
