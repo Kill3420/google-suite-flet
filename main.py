@@ -1,4 +1,3 @@
-import flet.fastapi as flet_fastapi
 import flet as ft
 import datetime
 import asyncio
@@ -354,4 +353,4 @@ async def main(page: ft.Page):
     page.run_task(clock_and_chrono_engine)
 
 
-app = flet_fastapi.app(main)
+app = ft.app(target=main, export_asgi=True)
