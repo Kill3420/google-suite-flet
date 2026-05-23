@@ -1,10 +1,12 @@
 import flet as ft
-from flet import colors as Colors  # Parche directo para todas tus llamadas ft.Colors
+from flet import colors as Colors  # Parche directo para ft.Colors
+from flet import icons as Icons    # Parche directo para ft.Icons o ft.Icons.X
 import datetime
 import asyncio
 
-# Forzamos compatibilidad en el objeto global de Flet
+# Forzamos la compatibilidad en el objeto global para evitar cualquier AttributeError
 ft.Colors = ft.colors
+ft.Icons = ft.icons
 
 async def main(page: ft.Page):
     page.title = "Google Suite Mobile"
@@ -40,7 +42,6 @@ async def main(page: ft.Page):
         "h": 0
     }
 
-    # Se usa ft.ElevatedButton para garantizar compatibilidad total
     btn_chrono_start = ft.ElevatedButton(
         content=ft.Text("Iniciar"),
         bgcolor=ft.Colors.BLUE,
@@ -353,10 +354,7 @@ async def main(page: ft.Page):
 
 
 # ==========================================
-# IMPORTACIÓN Y CONFIGURACIÓN ESTÁNDAR PARA DEPLOY
-# ==========================================
-# ==========================================
-# IMPORTACIÓN Y CONFIGURACIÓN COMPATIBLE PARA DEPLOY
+# CONFIGURACIÓN ESTÁNDAR DE MONTAJE PARA DEPLOY
 # ==========================================
 import flet_fastapi
 app = flet_fastapi.app(main)
