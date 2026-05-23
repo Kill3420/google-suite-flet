@@ -358,4 +358,4 @@ async def main(page: ft.Page):
 # ==========================================
 
 import flet_fastapi
-app = flet_fastapi.app(main)
+app = flet_fastapi.app(main, web_path="/")
