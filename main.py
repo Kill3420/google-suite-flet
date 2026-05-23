@@ -354,4 +354,4 @@ async def main(page: ft.Page):
     page.run_task(clock_and_chrono_engine)
 
 
-ft.app(target=main)
+app = flet_fastapi.app(main)
