@@ -355,5 +355,8 @@ async def main(page: ft.Page):
 # ==========================================
 # IMPORTACIÓN Y CONFIGURACIÓN ESTÁNDAR PARA DEPLOY
 # ==========================================
+# ==========================================
+# IMPORTACIÓN Y CONFIGURACIÓN COMPATIBLE PARA DEPLOY
+# ==========================================
 import flet_fastapi
-app = flet_fastapi.FletFastAPI(main)
+app = flet_fastapi.app(main)
