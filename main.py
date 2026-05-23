@@ -1,3 +1,4 @@
+import flet.fastapi as flet_fastapi
 import flet as ft
 import datetime
 import asyncio
