@@ -356,5 +356,8 @@ async def main(page: ft.Page):
 # ==========================================
 # IMPORTACIÓN Y CONFIGURACIÓN PARA VERCEL
 # ==========================================
+# ==========================================
+# IMPORTACIÓN Y CONFIGURACIÓN PARA VERCEL
+# ==========================================
 import flet_fastapi
-app = flet_fastapi.app(main)
+app = flet_fastapi.app(main, web_renderer="html")
